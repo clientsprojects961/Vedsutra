@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 7%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --sale: 0 72% 51%;
+    --sale-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --star: 45 93% 47%;
+    --banner-bg: 0 0% 7%;
+    --banner-foreground: 0 0% 100%;
+    --badge-sale: 0 72% 51%;
+    --price-original: 0 0% 45%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .sale-price {
+    color: hsl(var(--sale));
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .original-price {
+    color: hsl(var(--price-original));
+    text-decoration: line-through;
+  }
+
+  .stock-badge {
+    color: hsl(var(--success));
+  }
+
+  .star-rating {
+    color: hsl(var(--star));
+  }
+
+  .trust-badge {
+    @apply flex items-center gap-2 text-sm transition-colors;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .trust-badge:hover {
+    color: hsl(var(--foreground));
+  }
+
+  .section-divider {
+    @apply border-t border-border my-6;
+  }
+
+  .product-thumbnail {
+    @apply w-16 h-16 md:w-20 md:h-20 rounded-lg border-2 cursor-pointer object-cover transition-all duration-300;
+  }
+
+  .product-thumbnail.active {
+    @apply border-foreground shadow-md scale-105;
+  }
+
+  .product-thumbnail:not(.active) {
+    @apply border-transparent opacity-60 hover:opacity-100 hover:scale-105;
+  }
+
+  .size-option {
+    @apply px-4 py-2 border rounded-md text-sm font-medium cursor-pointer transition-all duration-200;
+  }
+
+  .size-option.active {
+    @apply bg-foreground text-background border-foreground;
+  }
+
+  .size-option:not(.active) {
+    @apply bg-background text-foreground border-border hover:border-foreground;
+  }
+
+  .buy-now-btn {
+    @apply w-full py-4 rounded-lg font-semibold text-base transition-all duration-300 shadow-lg;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .buy-now-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .buy-now-btn:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .buy-now-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .buy-now-btn:active {
+    transform: translateY(0);
+  }
+
+  .buy-outline-btn {
+    @apply w-full py-4 rounded-lg font-semibold text-base border-2 transition-all duration-300;
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+    background: transparent;
+  }
+
+  .buy-outline-btn:hover {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .announcement-bar {
+    background: linear-gradient(135deg, hsl(var(--banner-bg)) 0%, hsl(var(--banner-bg) / 0.95) 100%);
+    color: hsl(var(--banner-foreground));
+    @apply text-center py-3 text-sm font-medium;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .checkout-input {
+    @apply w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all;
+  }
+
+  .payment-card {
+    @apply p-4 border-2 rounded-xl cursor-pointer transition-all duration-300;
+  }
+
+  .payment-card.active {
+    @apply border-foreground bg-secondary shadow-md;
+  }
+
+  .payment-card:not(.active):not(.opacity-60) {
+    @apply border-border hover:border-foreground/30 hover:shadow-sm;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced focus styles */
+  .checkout-input:focus {
+    @apply ring-2 ring-primary/30 border-primary;
+  }
+
+  /* Professional card hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+}
